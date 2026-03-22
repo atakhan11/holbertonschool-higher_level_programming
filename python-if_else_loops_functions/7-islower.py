@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-for x in range(100):
-    if x == 99:
-        print("{:02d}".format(x))
-        break
-    print("{:02d}, ".format(x), end="")
+def islower(c):
+    if ord('z') >= ord(c) >= ord('a'):
+        return True
+    else:
+        return False
