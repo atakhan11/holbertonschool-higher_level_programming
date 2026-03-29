@@ -1,37 +1,36 @@
 #!/usr/bin/python3
-"""This Module is for dividing elements of a matrix"""
+"""Module containing matrix_divided func"""
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements of a matrix by div, rounded to 2 decimals"""
+    """Function for dividing all the elements of matrix"""
 
-    # Empty matrix case
-    if matrix == []:
-        return []
+    # Checking if matrix is a list and its elements is lists containing ints
+    if not all(isinstance(matrix, list)
+               and all(isinstance(num, (int, float))
+                       for num in row) for row in matrix):
+        raise TypeError("matrix must be a matrix "
+                        "(list of lists) of integers/floats")
 
-    # Check if matrix is a list of lists
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    # Checking if all rows containing same number of elements
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise TypeError("Each row of the matrix must have the same size")
 
-    # Check if all elements are int or float
-    for row in matrix:
-        for item in row:
-            if not isinstance(item, (int, float)):
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
-
-    # Check if all rows have the same size
-    row_len = len(matrix[0])
-    for row in matrix:
-        if len(row) != row_len:
-            raise TypeError("Each row of the matrix must have the same size")
-
-    # Check if div is a number and not zero
+    # Checking if div is not a float or int
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
+
+    # Checking if div is 0
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # Create new matrix with divided elements
-    new_matrix = [[round(item / div, 2) for item in row] for row in matrix]
+    # Dividing elements
+    new_matrix = []
+    for row in matrix:
+        new_row = []
+        for element in row:
+            new_row.append(round(element / div, 2))
+        new_matrix.append(new_row)
 
+    # Return new matrix
     return new_matrix
