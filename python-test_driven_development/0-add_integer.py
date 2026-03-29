@@ -19,5 +19,5 @@ def add_integer(a, b=98):
     if isinstance(b, float):
         b = int(b)
 
-    # Return sum of a and b    
+    # Return sum of a and b 
     return a + b
