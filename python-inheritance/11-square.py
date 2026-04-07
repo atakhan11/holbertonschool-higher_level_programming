@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-'''This Module about subclass Square'''
+"""Module containing BaseGeometry class"""
 
 Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
-    '''Class Square'''
+    """Class inherit from Rectangle class"""
     def __init__(self, size):
         self.__size = size
-        super().__init__(size, size)
+        self.integer_validator("size", self.__size)
 
     def area(self):
         return self.__size ** 2
