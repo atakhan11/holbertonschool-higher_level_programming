@@ -22,4 +22,4 @@ def deserialize_from_xml(filename):
 
     for child in root:
         data[child.tag] = child.text
-    return dat
+    return data
