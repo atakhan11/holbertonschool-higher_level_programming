@@ -21,7 +21,7 @@ def fetch_and_save_posts():
             "id": post["id"],
             "title": post["title"],
             "body": post["body"]
-    with.open("posts.cvs", "w", newline = "", encoding = "utf-8") as file:
+    with open("posts.cvs", "w", newline = "", encoding = "utf-8") as file:
     writer = csv.DictWriter(file. fieldnames = ["id", "title", "body"])
     writer.writeheader()
     writer.writerows(structured_data)
