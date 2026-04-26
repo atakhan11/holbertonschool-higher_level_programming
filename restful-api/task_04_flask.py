@@ -13,7 +13,7 @@ def home():
 
 @app.route('/data')
 def data():
-    return jsonify(list(users.values()))
+    return jsonify({"users": list(users.values())})
 
 
 @app.route('/add_user', methods=['POST'])
