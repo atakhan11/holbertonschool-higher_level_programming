@@ -13,17 +13,14 @@ def home():
 
 @app.route('/data')
 def data():
-    return jsonify({"users": list(users.values())})
+    return jsonify(list(users))
 
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
-    data = request.get_json()
-    if not data or not data.get('username'):
+    data = request.json
+    if data is None or data.get('username') is None:
         return jsonify({'error': 'Username is required'}), 400
-    username = data.get('username')
-    if username in users:
-        return jsonify({'error': 'User already exists'}), 400
     user = {
         'username': data.get('username'),
         'name': data.get('name'),
