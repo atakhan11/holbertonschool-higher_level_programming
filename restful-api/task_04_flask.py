@@ -18,8 +18,8 @@ def data():
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
-    data = request.json
-    if data is None or data.get('username') is None:
+    data = request.get_json()
+    if not data or not data.get('username'):
         return jsonify({'error': 'Username is required'}), 400
     username = data.get('username')
     if username in users:
@@ -46,6 +46,7 @@ def username(username):
     if username not in users:
         return jsonify({"error": "User not found"}), 404
     return jsonify(users[username])
+
 
 if __name__ == "__main__":
     app.run()
